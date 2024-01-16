@@ -1,0 +1,673 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ol,
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+body {
+  background-color: #fafafa;
+}
+
+/* main content body */
+.animalheadingdiv {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.info {
+  margin-bottom: 5px;
+  font-size: 1.1rem;
+  margin-left: 5px;
+}
+
+.animalheadingdiv h1 {
+  font-size: 1.6rem;
+}
+
+.apiresponsecontainer {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-top: 30px;
+  margin-left: 20px;
+  height: fit-content;
+}
+
+.stateinfo {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+.apiimagecontainer {
+  display: flex;
+  justify-content: center;
+}
+
+.custom-image-overlay {
+  border-radius: 4px 4px;
+  height: 5px;
+}
+
+.contactinfo {
+  margin-top: 15px;
+  margin-bottom: 5px;
+  word-wrap: break-word;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.contactinfo h1 {
+  word-wrap: break-word;
+}
+
+.phonecontactinfo {
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-bottom: 5px;
+  display: flex;
+  justify-content: center;
+}
+
+/* adjust the width of this container to make all posts look the same width */
+.singleparentcontainer {
+  outline: 2px solid black;
+  height: fit-content;
+  border-radius: 2px 2px;
+  width: 350px;
+}
+
+.hide {
+  display: none;
+}
+
+.title {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+
+.modaldescriptionpara {
+  margin-left: 0px;
+}
+
+.apiresponseimage {
+  max-height: 250px;
+  max-width: 250px;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  cursor: pointer;
+  border-radius: 5px 5px;
+}
+
+.apiresponseimage:hover {
+  border: '2px solid black';
+}
+
+.mapcontainer {
+  display: flex;
+}
+
+.gridcontainer {
+  display: flex;
+  outline: '2px solid pink';
+  justify-content: center;
+}
+
+.apidiv {
+  display: flex;
+  width: 60%;
+}
+
+.closediv {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 20px;
+}
+
+.x {
+  height: 20px;
+  cursor: pointer;
+}
+
+.closediv span {
+  margin-right: 20px;
+}
+
+/* closemodal */
+.filter {
+  width: 40%;
+  outline: '2px solid black;';
+  height: fit-content;
+  padding-bottom: 30px;
+  background-color: #faf9f6;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+}
+
+.typeofpetdiv {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+#petSelect {
+  font-size: 16px;
+  height: 30px;
+}
+
+.selectapetdiv {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+.genderselectdiv {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+}
+
+#genderSelect {
+  font-size: 16px;
+  height: 30px;
+}
+
+.selectapetlabel {
+  font-size: 1.3rem;
+}
+
+.genderheadingdiv {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.findapetdiv {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+.findapetdiv h1 {
+  font-size: 1.8rem;
+}
+
+.statediv {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.selectastatediv {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  height: 30px;
+}
+
+.searchdiv {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.searchdiv button {
+  background-color: black;
+  color: whitesmoke;
+  height: 40px;
+  width: 200px;
+  font-size: 16px;
+  border-radius: 4px 4px;
+  cursor: pointer;
+}
+
+/* navbar component css */
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 90px;
+  background-color: #fbfbfb;
+  outline: 2px solid black;
+  margin-bottom: 2px;
+  position: relative;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.wrapper {
+  position: sticky;
+  top: 0px; /* the position at which the element will stick */
+  z-index: 100; /* Ensure the navbar is above other elements */
+}
+
+.navbar h1 {
+  font-size: 2.3rem;
+  font-family: 'Times New Roman', Times, serif;
+  font-family: 'Shadows Into Light', cursive;
+  cursor: pointer;
+}
+
+.navunorderedlist {
+  position: absolute;
+  display: flex;
+  top: 37px; /* change to adjust the text */
+  gap: 40px;
+  right: 20px;
+  font-size: 1.4rem;
+}
+
+.navunorderedlist li {
+  list-style: none; /* Remove default list styles */
+  cursor: pointer;
+}
+
+/* individual animals component */
+.gobackdiv {
+  margin-top: 20px;
+  margin-left: 40px;
+  display: flex;
+  align-items: center;
+}
+
+.gobackword {
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+/* backbutton */
+.arrowleft {
+  height: 25px;
+  margin-right: 15px;
+  cursor: pointer;
+}
+
+.imagesdiv {
+  outline: 2px solid violet;
+  height: 300px;
+}
+
+/* individual image modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(
+    0,
+    0,
+    0,
+    0.1
+  ); /* adjust value here to make modal more transparent */
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-content {
+  margin-top: 50px;
+  width: 90vw;
+  height: 80vh;
+  background: #fbfbfb;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  display: flex;
+  position: relative;
+}
+
+.modalimage {
+  max-height: 200px;
+  max-width: 200px;
+  border-radius: 4px 4px;
+  border: 2px groove black;
+  cursor: pointer;
+}
+
+.modalcontainer {
+  margin-top: 40px;
+}
+
+.xmodalclosediv {
+  position: absolute;
+  right: 20px;
+  top: 10px;
+  cursor: pointer;
+}
+
+.nophotosdiv {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 20px;
+  width: 60vw;
+}
+
+.modalimagediv {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 20px;
+  width: 60vw;
+}
+/* put display flex on this */
+.modalmaincontactinfo {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #f3f3f3;
+}
+
+.modalmaincontactinfo p {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.modalcontactinfodiv {
+  font-size: 1.3rem;
+}
+
+.modalmaincontactinfo p span {
+  font-weight: bolder;
+}
+
+.parentmodaldescriptiondiv {
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f3f3f3;
+  padding-bottom: 10px;
+  font-size: 1.3rem;
+}
+
+.modalanimaldescription {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  word-wrap: break-word;
+}
+
+.modaldescriptiondiv {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.xmodalclose {
+  height: 25px;
+}
+
+.modalanimaldescription p {
+  margin-bottom: 10px;
+  font-size: 1.3rem;
+  word-wrap: break-word;
+}
+
+.modalanimaldescription p span {
+  font-weight: bolder;
+}
+
+.breed {
+  margin-top: 10px;
+}
+
+.modalmapcontainer {
+  height: 470px;
+  outline: 2px solid black;
+  border-radius: 4px 4px;
+}
+
+.mapheadingdiv {
+  padding-top: 10px;
+
+  background-color: #faf9f6;
+}
+
+.importantinfodiv {
+  width: 40vw;
+  margin-top: 40px;
+  margin-left: 20px;
+}
+
+.importantinfodivversiontwo {
+  outline: 2px solid pink;
+  width: 40vw;
+  margin-left: 20px;
+  margin-top: 60px;
+}
+
+.address {
+  margin-top: 20px;
+  font-size: 1.2rem;
+}
+
+.locationdotspan {
+  margin-right: 5px;
+}
+
+/* Add your general styling for the button */
+.scroll-to-top-button {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: /*#007bff; */ black;
+  color: #fff;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  opacity: 0;
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* Add additional styling when the button is visible */
+.scroll-to-top-button.visible {
+  opacity: 1;
+}
+
+/* imagemodal css*/
+.imagemodal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999999999;
+}
+
+.imagemodal-content {
+  position: relative;
+  background: #fff;
+
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 75%;
+  overflow: hidden;
+}
+
+.visibilityremove {
+  visibility: hidden;
+}
+
+loadingimagemodal-content {
+  position: relative;
+  background: rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  border-radius: 8px;
+  max-width: 80%;
+  max-height: 75%;
+  overflow: hidden;
+}
+
+.modal-image {
+  width: 100%;
+  /* height: auto; */
+  max-height: 600px;
+  display: block;
+}
+
+.closeimage-modal {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  font-size: 20px;
+  cursor: pointer;
+  color: #fff;
+}
+
+.closeimagemodaldiv {
+  display: flex;
+  justify-content: end;
+  padding-bottom: 10px;
+}
+
+.loadingimg {
+  height: 400px;
+}

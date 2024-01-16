@@ -1,9 +1,7 @@
-# React + Vite
+# Petsy App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This App allows finding pets to adopt easier in the United States. 
 
-Currently, two official plugins are available:
+To use the app, choose the type of pet you want to adopt and click search. then select any of the pets that appear from the search results, and then it will open a modal, which you will see the contact information of the pet owners such as email and phone number.  You can contact them to discuss further details regarding the specific pet you clicked on for adoption
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 # Petsy

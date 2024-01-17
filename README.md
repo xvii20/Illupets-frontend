@@ -17,7 +17,7 @@ the api that I used for geocoding is from https://positionstack.com/.  just clic
 for this Api you need a api key and a secret key to use. 
 just go to this website and click get free api key.
 https://www.petfinder.com/developers/
-and then replace the ${clientId} variable  with the apiKey you got from the petfinder website   and the ${clientSecret} variable with the secret key  you got from the petfinder website
+and then replace the ${clientId} variable in the mainbody.jsx file with the apiKey you got from the petfinder website   and the ${clientSecret} variable with the secret key  you got from the petfinder website
 
 # Helpful Links
 - [Positionstack Documentation](https://positionstack.com/documentation)

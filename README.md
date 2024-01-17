@@ -14,9 +14,10 @@ type __npm install__ to install the required the dependencies
 the api that I used for geocoding is from https://positionstack.com/.  just click "Get Free Api Key" and you can follow the instructions to get a free api key from there. replace the geo_Api_Key variable in the modalmap.jsx file with your own api key.
 
 # Petfinder Api
-for this Api you need a id and a secret key to use. 
+for this Api you need a api key and a secret key to use. 
 just go to this website and click get free api key.
 https://www.petfinder.com/developers/
+and then replace the ${clientId} variable  with the apiKey you got from the petfinder website   and the ${clientSecret} variable with the secret key  you got from the petfinder website
 
 # Helpful Links
 - [Positionstack Documentation](https://positionstack.com/documentation)

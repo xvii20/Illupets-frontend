@@ -185,5 +185,3 @@ export const Modalmap = ({
     </>
   );
 };
-
-/* tomorrow add the map component to the modal */

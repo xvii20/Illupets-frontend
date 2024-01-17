@@ -30,16 +30,6 @@ const Modal = ({
 
   const [selectedIndex, setSelectedIndex] = useState(0);
 
-  useEffect(() => {
-    // Attach the event listener when the component mounts
-    document.addEventListener('keydown', handleKeyDown);
-
-    // Detach the event listener when the component unmounts
-    return () => {
-      document.removeEventListener('keydown', handleKeyDown);
-    };
-  }, []); // Empty dependency array means this effect runs once when the component mounts
-
   if (!imageModal) {
     return null;
   }
@@ -145,7 +135,7 @@ const Modal = ({
             onClick={() => setImageModal(false)}
           />{' '}
         </div>
-        <div className="modalcontainer" onKeyDown={handleKeyDown} tabIndex="0">
+        <div className="modalcontainer">
           {chosenElement.photos.length !== 0 ? (
             <div className="modalimagediv">
               {chosenElement.photos.slice(0, 3).map((element, index) => {
@@ -171,14 +161,14 @@ const Modal = ({
             <div className="nophotosdiv"> </div>
           )}
           <div className="parentmodaldescriptiondiv">
-            <p>
+            <div className="xyz">
               <div className="modaldescriptiondiv"> Description: </div>
               {chosenElement.description ? (
                 <div> {chosenElement.description} </div>
               ) : (
                 <div> N/A</div>
               )}{' '}
-            </p>
+            </div>
           </div>
           <div className="modalmaincontactinfo">
             {' '}

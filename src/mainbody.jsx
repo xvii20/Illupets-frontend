@@ -90,7 +90,7 @@ export default function Mainbody({
       // Update the state with the new data
       setApiResponse((prevItems) => [
         ...prevItems,
-        ...(newItems.animals || []),
+        ...(newItems.animals || []), //   if newItems.animals is falsy then it will do this ...[]  and console.log(...[], 'empty'); gives you nothing
       ]);
     } catch (error) {
       console.error('Error fetching data:', error);
@@ -99,6 +99,7 @@ export default function Mainbody({
     }
   };
 
+  // infinite loading
   const handleScroll = () => {
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 

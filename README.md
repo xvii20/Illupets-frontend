@@ -19,6 +19,7 @@ just go to this website and click get free api key.
 https://www.petfinder.com/developers/
 
 # Helpful Links
-https://positionstack.com/documentation
-https://www.petfinder.com/developers/
-https://www.petfinder.com/developers/v2/docs/
+- [Positionstack Documentation](https://positionstack.com/documentation)
+- [Petfinder Developers](https://www.petfinder.com/developers/)
+- [Petfinder Developers v2 Docs](https://www.petfinder.com/developers/v2/docs/)
+

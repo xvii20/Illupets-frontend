@@ -7,6 +7,8 @@ To use the app, choose the type of pet you want to adopt and click search. then 
 
 ## If you cloned this app, below are tips on how to get the api to work
 
+type __npm install__ to install the required the dependencies
+
 # Geocoding api
 
 the api that I used for geocoding is from https://positionstack.com/.  just click "Get Free Api Key" and you can follow the instructions to get a free api key from there. replace the geo_Api_Key variable in the modalmap.jsx file with your own api key.

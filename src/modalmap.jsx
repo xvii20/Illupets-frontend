@@ -45,66 +45,6 @@ export const Modalmap = ({
 
   useEffect(() => {
     async function geo() {
-      // if (address1 && state && city) {
-      //   const finalAddress = `${address1}, ${city}, ${state} ${postcode}, USA`;
-      //   console.log(finalAddress);
-      //   // let fake = '7120 S. Kings River Road, Parlier CA';
-      //   const encodedAddress = encodeURIComponent(finalAddress);
-      //   // // const fakeAddress = encodeURIComponent(fake); // remove soon
-      //   // console.log(encodedAddress);
-
-      //   try {
-      //     let response = await axios.get(
-      //       // `https://geocode.maps.co/search?q=${encodedAddress}&api_key=${geo_Api_Key_Version_Two}`
-
-      //       // working `http://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=1600%20Pennsylvania%20Ave%20NW,%20Washington%20DC`
-      //       `http://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=7120 S. Kings River Road, Parlier, CA, 93648 `
-      //     );
-
-      //     console.log(response);
-
-      //     if (response.data.data.length > 0) {
-      //       // use parsefloat to turn decimal strings into decimal numbers. dont use parseInt, because you will lose the decimals
-      //       console.log('kookie');
-      //       console.log(response.data.data, 'data!!');
-
-      //       setLatitude(response.data.data[0].latitude);
-      //       setLongitude(response.data.data[0].longitude);
-      //     }
-      //   } catch (error) {
-      //     console.error('Error fetching geolocation:', error);
-      //   }
-      //   return;
-      // } else if (address2 && state && city) {
-      //   const finalAddress = `${address2}, ${city} ${state}`;
-      //   console.log(finalAddress);
-      //   // const encodedAddress = encodeURIComponent(finalAddress);
-      //   // console.log(encodedAddress);
-
-      //   try {
-      //     let response = await axios.get(
-      //       // `https://geocode.maps.co/search?q=${finalAddress}&api_key=${geo_Api_Key_Version_Two}`
-
-      //       // working `http://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=1600%20Pennsylvania%20Ave%20NW,%20Washington%20DC`
-      //       `http://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=${finalAddress}`
-      //     );
-
-      //     console.log(response);
-
-      //     if (response.data.data.length > 0) {
-      //       // use parsefloat to turn decimal strings into decimal numbers. dont use parseInt, because you will lose the decimals
-
-      //       console.log(response.data.data, 'data!!'); // figure out how to get this damn lat and longitude to work on the mao
-
-      //       setLatitude(response.data.data[0].latitude);
-      //       setLongitude(response.data.data[0].longitude);
-      //     }
-      //   } catch (error) {
-      //     console.error('Error fetching geolocation:', error);
-      //   }
-      //   return;
-      // }
-
       // if address1 and address2 are falsy values, this will do something
       // if (!address2 && !address1) {
       const finalAddress = ` ${

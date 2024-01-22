@@ -30,7 +30,7 @@ const ScrollToTopButton = ({ imageModal }) => {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
-  // tommorrow make test, and try get the app responsive
+
   return (
     <button
       className={`scroll-to-top-button ${

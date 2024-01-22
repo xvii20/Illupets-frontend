@@ -233,6 +233,13 @@ export default function Mainbody({
 
   return (
     <>
+      <div className="mediafilter">
+        {' '}
+        <span onClick={toggleModal}>
+          {' '}
+          {closeModal ? 'Open Modal' : 'Close Filter'}{' '}
+        </span>
+      </div>
       {apiResponse ? (
         <div className="animalheadingdiv">
           {' '}

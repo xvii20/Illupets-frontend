@@ -29,5 +29,3 @@ export const MyMapComponent = ({ closeModal }) => {
     </MapContainer>
   );
 };
-
-/* tomorrow add the map component to the modal */

@@ -26,3 +26,7 @@ and then replace the ${clientId} variable in the mainbody.jsx file with the apiK
 - [Positionstack Documentation](https://positionstack.com/documentation)
 - [Petfinder Developers](https://www.petfinder.com/developers/)
 - [Petfinder Developers v2 Docs](https://www.petfinder.com/developers/v2/docs/)
+
+# Tech Stack
+
+React

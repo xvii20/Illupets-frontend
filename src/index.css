@@ -143,7 +143,7 @@ body {
 .info {
   margin-bottom: 5px;
   font-size: 1.1rem;
-  margin-left: 5px;
+  margin-left: 13px;
 }
 
 .animalheadingdiv h1 {
@@ -240,6 +240,15 @@ body {
   display: flex;
   outline: '2px solid pink';
   justify-content: center;
+  /* align-items: center;
+  flex-direction: column; */
+  position: relative;
+}
+
+.gridcontainerv2 {
+  display: flex;
+  outline: '2px solid pink';
+  justify-content: center;
 }
 
 .apidiv {
@@ -264,13 +273,17 @@ body {
 
 /* closemodal */
 .filter {
-  width: 40%;
+  width: /* 40%; */ 60%;
+
   outline: '2px solid black;';
   height: fit-content;
   padding-bottom: 30px;
   background-color: #faf9f6;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   margin-top: 30px;
+  min-width: 300px;
+  max-width: 1000px;
+  margin-right: 20px;
 }
 
 .typeofpetdiv {
@@ -395,6 +408,14 @@ body {
   cursor: pointer;
 }
 
+.mediafilter {
+  margin-top: 40px;
+  margin-bottom: 20px;
+  font-size: 1.4rem;
+  display: none;
+  width: 100vw;
+}
+
 /* individual animals component */
 .gobackdiv {
   margin-top: 20px;
@@ -440,9 +461,9 @@ body {
 }
 
 .modal-content {
-  margin-top: 50px;
+  margin-top: 90px;
   width: 90vw;
-  height: 80vh;
+  height: 84vh;
   background: #fbfbfb;
   padding: 20px;
   border-radius: 5px;
@@ -554,7 +575,7 @@ body {
 }
 
 .modalmapcontainer {
-  height: 470px;
+  height: 490px;
   outline: 2px solid black;
   border-radius: 4px 4px;
 }
@@ -670,4 +691,37 @@ loadingimagemodal-content {
 
 .loadingimg {
   height: 400px;
+}
+
+/* media queries */
+
+@media (max-width: 537px) {
+  /* Your CSS rules for screens up to 600 pixels wide go here */
+  .mediafilter {
+    display: flex;
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .navunorderedlist li {
+    display: none;
+  }
+}
+
+@media (max-width: 800px) {
+  .filter {
+    position: absolute;
+  }
+}
+
+@media (max-width: 830px) {
+  .modalmapcontainer {
+    display: none;
+  }
+}
+
+@media (max-width: 375px) {
+  .apidiv {
+    margin-right: 35px;
+  }
 }

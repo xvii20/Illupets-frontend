@@ -505,6 +505,7 @@ body {
 .modalimagediv {
   display: flex;
   justify-content: flex-start;
+  overflow: auto;
   align-items: center;
   gap: 20px;
   border-bottom: 2px solid #f3f3f3;
@@ -711,6 +712,7 @@ loadingimagemodal-content {
 @media (max-width: 800px) {
   .filter {
     position: absolute;
+    width: 80vw;
   }
 }
 

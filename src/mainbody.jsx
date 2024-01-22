@@ -77,7 +77,7 @@ export default function Mainbody({
       const currentAccessToken = await getAccessToken();
 
       let apiUrl = `https://api.petfinder.com${nextApiResponse.pagination._links.next.href}`;
-      // console.log(apiUrl, 'aqqq');
+      // console.log(apiUrl, 'apiurl');
       const response = await axios.get(apiUrl, {
         headers: {
           Authorization: `Bearer ${currentAccessToken}`,
@@ -229,6 +229,7 @@ export default function Mainbody({
   async function handleSearch() {
     let response = await getAnimalsList();
     setTouched(true);
+    setCloseModal(true);
   }
 
   return (

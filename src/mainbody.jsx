@@ -141,7 +141,7 @@ export default function Mainbody({
       });
 
       accessToken = response.data.access_token;
-      console.log('Access Token:', accessToken);
+      // console.log('Access Token:', accessToken);
       return accessToken;
     } catch (error) {
       console.error('Error obtaining access token:', error);

@@ -471,6 +471,8 @@ body {
   text-align: center;
   display: flex;
   position: relative;
+  max-height: 550px;
+  overflow: auto;
 }
 
 .modalimage {
@@ -524,7 +526,7 @@ body {
 
 .modalmaincontactinfo p {
   margin-bottom: 10px;
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 
 .modalcontactinfodiv {
@@ -576,7 +578,7 @@ body {
 }
 
 .modalmapcontainer {
-  height: 490px;
+  height: 480px;
   outline: 2px solid black;
   border-radius: 4px 4px;
 }

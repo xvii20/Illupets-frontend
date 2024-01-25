@@ -648,7 +648,7 @@ body {
 .imagemodal-content {
   position: relative;
   background: #fff;
-
+  margin-top: 70px;
   padding: 20px;
   border-radius: 8px;
   max-width: 80%;

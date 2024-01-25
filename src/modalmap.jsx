@@ -59,8 +59,7 @@ export const Modalmap = ({
           // `https://geocode.maps.co/search?q=${finalAddress}&api_key=${geo_Api_Key_Version_Two}`
 
           // working `http://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=1600%20Pennsylvania%20Ave%20NW,%20Washington%20DC`
-          `http://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=${finalAddress}` ||
-            `https://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=${finalAddress}`
+          `http://api.positionstack.com/v1/forward?access_key=${geo_Api_Key}&query=${finalAddress}`
         );
 
         // console.log(response);

@@ -235,7 +235,9 @@ const Modal = ({
               : 'importantinfodiv'
           }
         >
-          <div className="modalmapcontainer">
+          <div
+            className={isMapLoaded ? 'modalmapcontainer' : 'visibilityremove'}
+          >
             <Modalmap
               chosenElement={chosenElement}
               // latitude={latitude}

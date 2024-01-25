@@ -62,8 +62,12 @@ export default function Mainbody({
   let [imageModal, setImageModal] = useState(false);
   let [chosenElement, setChosenElement] = useState('');
 
-  // Step 1: Obtain OAuth 2.0 Tokenlet accessToken = null;
-  let accessToken = null;
+  // // Step 1: Obtain OAuth 2.0 Tokenlet accessToken = null;
+  let accessToken;
+
+  useEffect(() => {
+    getAccessToken();
+  }, []);
 
   function toggleImageModal() {
     // setImageModal((prevState) => !prevState);
@@ -122,9 +126,9 @@ export default function Mainbody({
 
   // Step 1: Obtain OAuth 2.0 Token
   const getAccessToken = async () => {
-    if (accessToken) {
-      return accessToken; // Return the existing token if it's still valid
-    }
+    // if (accessToken) {
+    //   return accessToken; // Return the existing token if it's still valid
+    // }
 
     const oauthUrl = 'https://api.petfinder.com/v2/oauth2/token';
     const requestBody = `grant_type=client_credentials&client_id=${clientId}&client_secret=${clientSecret}`;
@@ -137,6 +141,7 @@ export default function Mainbody({
       });
 
       accessToken = response.data.access_token;
+      console.log('Access Token:', accessToken);
       return accessToken;
     } catch (error) {
       console.error('Error obtaining access token:', error);

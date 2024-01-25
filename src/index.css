@@ -200,7 +200,8 @@ body {
 /* adjust the width of this container to make all posts look the same width */
 .singleparentcontainer {
   outline: 2px solid black;
-  height: fit-content;
+  /* height: fit-content; */
+  height: 500px;
   border-radius: 2px 2px;
   width: 350px;
 }
@@ -284,6 +285,9 @@ body {
   min-width: 300px;
   max-width: 1000px;
   margin-right: 20px;
+  position: sticky;
+  top: 20%;
+  z-index: 100;
 }
 
 .typeofpetdiv {
@@ -714,7 +718,10 @@ loadingimagemodal-content {
 @media (max-width: 800px) {
   .filter {
     position: absolute;
+
     width: 80vw;
+    top: 0;
+    z-index: 0;
   }
 }
 

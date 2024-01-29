@@ -133,6 +133,22 @@ body {
 }
 
 /* main content body */
+
+.ops {
+  font-size: 16px;
+  color: red;
+}
+
+select.ops {
+  font-size: 16px;
+  color: red;
+}
+
+option:disabled {
+  /* styles for disabled options */
+  color: red;
+}
+
 .animalheadingdiv {
   display: flex;
   justify-content: center;
@@ -245,12 +261,12 @@ body {
   flex-direction: column; */
   position: relative;
 }
-
+/* 
 .gridcontainerv2 {
   display: flex;
   outline: '2px solid pink';
   justify-content: center;
-}
+} */
 
 .apidiv {
   display: flex;
@@ -288,6 +304,27 @@ body {
   position: sticky;
   top: 20%;
   z-index: 100;
+}
+
+.filterblock {
+  width: /* 40%; */ 60%;
+
+  outline: '2px solid black;';
+  height: fit-content;
+  padding-bottom: 30px;
+  background-color: #faf9f6;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  margin-top: 30px;
+  min-width: 300px;
+  max-width: 1000px;
+  margin-right: 20px;
+  top: 20%;
+  /* z-index: 100; */
+  display: none;
+}
+
+.filterblockparent {
+  display: none;
 }
 
 .typeofpetdiv {
@@ -377,7 +414,7 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 90px;
+  height: 70px;
   background-color: #fbfbfb;
   outline: 2px solid black;
   margin-bottom: 2px;
@@ -401,7 +438,7 @@ body {
 .navunorderedlist {
   position: absolute;
   display: flex;
-  top: 37px; /* change to adjust the text */
+  top: 27px; /* change to adjust the text height from the navbar*/
   gap: 40px;
   right: 20px;
   font-size: 1.4rem;
@@ -704,30 +741,58 @@ loadingimagemodal-content {
 
 @media (max-width: 537px) {
   /* Your CSS rules for screens up to 600 pixels wide go here */
-  .mediafilter {
+  /* .mediafilter {
     display: flex;
     justify-content: center;
     cursor: pointer;
-  }
+  } */
 
   .navunorderedlist li {
     display: none;
   }
+
+  /* .gridcontainer {
+    justify-content: flex-start;
+  } */
 }
 
 @media (max-width: 800px) {
-  .filter {
+  /* .filter {
     position: absolute;
 
     width: 80vw;
     top: 0;
     z-index: 0;
+  }  */
+
+  .apidiv {
+    width: 100%;
+    margin-right: 20px;
+  }
+
+  .filter {
+    display: none;
+  }
+
+  .filterblock {
+    display: block;
+  }
+
+  .filterblockparent {
+    display: flex;
+    justify-content: center;
   }
 }
 
 @media (max-width: 830px) {
   .modalmapcontainer {
     display: none;
+  }
+}
+
+@media (max-width: 900px) {
+  .apiresponsecontainer {
+    justify-content: center;
   }
 }
 

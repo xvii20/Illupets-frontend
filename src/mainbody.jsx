@@ -246,6 +246,95 @@ export default function Mainbody({
           {closeModal ? 'Open Modal' : 'Close Filter'}{' '}
         </span>
       </div>
+      <div className={closeModal ? 'hide' : 'filterblockparent'}>
+        <div className={closeModal ? 'hide' : 'filterblock'}>
+          <div className="findapetdiv">
+            {' '}
+            <h1> Find a Pet</h1>{' '}
+          </div>
+
+          <div>
+            <div className="typeofpetdiv">
+              {' '}
+              <h2> Type of Pet </h2>{' '}
+            </div>
+
+            <div className="selectapetdiv">
+              {/* <label htmlFor="petSelect" className="selectapetlabel">
+                Select a Pet:
+              </label> */}
+              <select
+                id="petSelect"
+                value={selectedPet}
+                onChange={handlePetChange}
+              >
+                <option disabled value="">
+                  -- Select a Pet --
+                </option>
+                {petOptions.map((pet, index) => (
+                  <option key={index} value={pet}>
+                    {pet}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div>
+              {' '}
+              <div className="genderheadingdiv">
+                {' '}
+                <h2>Gender</h2>{' '}
+              </div>
+              <div className="genderselectdiv">
+                <select
+                  id="genderSelect"
+                  value={selectedGender}
+                  onChange={handleGenderChange}
+                >
+                  {/* <option value={gender}> Both </option> */}
+                  {genderOptions.map((gender, index) => (
+                    <option key={index} value={gender}>
+                      {gender}
+                    </option>
+                  ))}
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            {' '}
+            <div className="statediv">
+              {' '}
+              <h2> State </h2>{' '}
+            </div>
+          </div>
+          <div className="selectcontainer">
+            <div className="selectastatediv">
+              <select
+                id="stateSelect"
+                value={selectedState}
+                onChange={handleStateChange}
+              >
+                <option disabled value="">
+                  <h2 className="ops"> -- Select a State -- </h2>
+                </option>
+                {stateOptions.map((state, index) => (
+                  <option key={index} value={state}>
+                    {state}
+                  </option>
+                ))}
+              </select>
+            </div>
+
+            <div className="searchdiv">
+              {' '}
+              <button onClick={handleSearch}> Search </button>{' '}
+            </div>
+          </div>
+        </div>
+      </div>
+
       {apiResponse ? (
         <div className="animalheadingdiv">
           {' '}
@@ -444,7 +533,7 @@ export default function Mainbody({
                 onChange={handleStateChange}
               >
                 <option disabled value="">
-                  -- Select a State --
+                  <h2 className="ops"> -- Select a State -- </h2>
                 </option>
                 {stateOptions.map((state, index) => (
                   <option key={index} value={state}>

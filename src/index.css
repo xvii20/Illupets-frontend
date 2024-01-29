@@ -315,7 +315,8 @@ option:disabled {
   background-color: #faf9f6;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
   margin-top: 30px;
-  min-width: 300px;
+  min-width: 350px;
+  margin-left: 15px;
   max-width: 1000px;
   margin-right: 20px;
   top: 20%;
@@ -741,11 +742,14 @@ loadingimagemodal-content {
 
 @media (max-width: 537px) {
   /* Your CSS rules for screens up to 600 pixels wide go here */
-  /* .mediafilter {
+  .mediafilter {
     display: flex;
     justify-content: center;
     cursor: pointer;
-  } */
+  }
+
+  .mediafilter span {
+  }
 
   .navunorderedlist li {
     display: none;

@@ -246,6 +246,7 @@ export default function Mainbody({
           {closeModal ? 'Open Modal' : 'Close Filter'}{' '}
         </span>
       </div>
+
       <div className={closeModal ? 'hide' : 'filterblockparent'}>
         <div className={closeModal ? 'hide' : 'filterblock'}>
           <div className="findapetdiv">

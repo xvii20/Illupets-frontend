@@ -30,7 +30,7 @@ export default function Navbar({
             }
           >
             {' '}
-            Petsy
+            Illupets
           </h1>
 
           <ul className="navunorderedlist">
@@ -48,5 +48,3 @@ export default function Navbar({
     </>
   );
 }
-
-

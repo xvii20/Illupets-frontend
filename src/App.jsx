@@ -47,7 +47,7 @@ function App() {
           <Route
             index
             element={
-              <React.Suspense fallback="loading...">
+              <React.Suspense fallback="">
                 <Lazyload
                   closeModal={closeModal}
                   setCloseModal={setCloseModal}

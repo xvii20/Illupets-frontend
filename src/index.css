@@ -301,7 +301,7 @@ option:disabled {
   max-width: 1000px;
   margin-right: 20px;
   position: sticky;
-  top: 10%;
+  top: 15%;
   z-index: 100;
 }
 

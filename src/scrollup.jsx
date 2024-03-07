@@ -5,7 +5,7 @@ const ScrollToTopButton = ({ imageModal }) => {
 
   const handleScroll = () => {
     const scrollY = window.scrollY; // It gets the current vertical scroll position of the page using window.scrollY.
-    const visibilityThreshold = 200; // A threshold value (visibilityThreshold) is set (in pixels), and the isVisible state is updated based on whether the scroll position is greater than this threshold. Adjust this value based on your preference
+    const visibilityThreshold = 200; // A threshold value (visibilityThreshold) is set (in pixels), and the isVisible state is updated based on whether the scroll position is greater than this threshold.
 
     // If scrollY is greater than the threshold, isVisible is set to true, indicating that the button should be visible; otherwise, it's set to false.
     setIsVisible(scrollY > visibilityThreshold);
@@ -22,10 +22,9 @@ const ScrollToTopButton = ({ imageModal }) => {
   };
 
   useEffect(() => {
-    // This line adds an event listener to the scroll event on the window object. The listener function is handleScroll, which was defined earlier.
+    // This line adds an event listener to the scroll event on the window object.
     window.addEventListener('scroll', handleScroll);
 
-    //  the cleanup function removes the event listener that was added in the setup phase. This helps prevent memory leaks by ensuring that the event listener is removed when the component is no longer in use.
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };

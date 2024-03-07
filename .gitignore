@@ -1,5 +1,9 @@
 # Ignore .env files
 .env
+/server/.env
+
+
+
 pagination.jsx
 codesave.txt
 notes.txt

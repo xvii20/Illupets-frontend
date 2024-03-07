@@ -4,7 +4,7 @@ import 'leaflet/dist/leaflet.css';
 import { useEffect } from 'react';
 
 export const MyMapComponent = ({ closeModal }) => {
-  // Use a unique key based on the closeModal prop. needed to rerender the map
+  //  needed to rerender the map
   const mapKey = closeModal ? 'closed' : 'open';
 
   return (

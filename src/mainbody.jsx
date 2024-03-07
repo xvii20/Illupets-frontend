@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useMemo, memo } from 'react';
 import { MyMapComponent } from './map';
 import {
   stateOptions,
@@ -9,8 +9,9 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faX } from '@fortawesome/free-solid-svg-icons';
 import axios from 'axios';
-import catProfilePic from './catprofilepic.jpg';
-import ReactPaginate from 'react-paginate';
+
+import noimg from './No-Image-Placeholder.png';
+
 import {
   BrowserRouter,
   Routes,
@@ -24,80 +25,107 @@ import {
 } from 'react-router-dom';
 import Modal from './modal';
 import ScrollToTopButton from './scrollup';
+import { createTheme, ThemeProvider } from '@mui/material/styles';
+import {
+  Stack,
+  Typography,
+  IconButton,
+  ButtonGroup,
+  ToggleButton,
+  ToggleButtonGroup,
+  TextField,
+  TextareaAutosize,
+  InputAdornment,
+  Box,
+  Button,
+  MenuItem,
+  CircularProgress,
+} from '@mui/material';
+import Snackbar from '@mui/material/Snackbar';
+import MuiAlert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
 
-export default function Mainbody({
-  closeModal,
-  setCloseModal,
-  gridView,
-  mapView,
-}) {
+function Mainbody({ closeModal, setCloseModal, gridView, mapView }) {
   const clientId = import.meta.env.VITE_API_KEY; // works
   const clientSecret = import.meta.env.VITE_SECRET_KEY; // works
 
   let navigate = useNavigate();
 
-  // State to store the selected state
   const [selectedState, setSelectedState] = useState('');
 
   const [selectedPet, setSelectedPet] = useState('');
-  const [selectedGender, setSelectedGender] = useState('Does not matter');
+  const [selectedGender, setSelectedGender] = useState('Both');
   const [selectedBreed, setSelectedBreed] = useState('');
 
   const petOptions = ['Cats', 'Rabbits', 'Dogs'];
-  const genderOptions = ['Does not matter', 'Male', 'Female'];
-
-  // paginations
-  const [currentPage, setCurrentPage] = useState(0);
-  const [totalPages, setTotalPages] = useState(0);
+  const genderOptions = ['Both', 'Male', 'Female'];
 
   let [apiResponse, setApiResponse] = useState('');
 
   let [nextApiResponse, setNextApiResponse] = useState('');
 
   const [items, setItems] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+
   let [touched, setTouched] = useState(false);
 
   let [imageModal, setImageModal] = useState(false);
   let [chosenElement, setChosenElement] = useState('');
 
-  // // Step 1: Obtain OAuth 2.0 Tokenlet accessToken = null;
+  let [triggerNext, setTriggerNext] = useState(false);
+
+  const [alertOpen, setAlertOpen] = useState(false);
+
+  // // Step 1: Obtain OAuth 2.0 Tokenlet for pet api
   let accessToken;
 
   useEffect(() => {
     getAccessToken();
   }, []);
 
+  // modal appears
   function toggleImageModal() {
     // setImageModal((prevState) => !prevState);
     setImageModal(true);
+    setCloseModal(true);
+    document.body.style.overflow = 'hidden'; // user is unable to scroll the background page when modal is opened.
   }
 
+  // closes the mui alert
+  const handleClose = () => {
+    setAlertOpen(false);
+  };
+
   const fetchData = async () => {
-    setLoading(true);
+    // setLoading(true);
 
     try {
       const currentAccessToken = await getAccessToken();
 
-      let apiUrl = `https://api.petfinder.com${nextApiResponse.pagination._links.next.href}`;
-      // console.log(apiUrl, 'apiurl');
-      const response = await axios.get(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${currentAccessToken}`,
-        },
-      });
+      // Check if nextApiResponse.pagination is defined before accessing its properties
+      if (triggerNext) {
+        let apiUrl = `https://api.petfinder.com${nextApiResponse.pagination._links.next.href}`;
+        const response = await axios.get(apiUrl, {
+          headers: {
+            Authorization: `Bearer ${currentAccessToken}`,
+          },
+        });
 
-      // Extract the data from the Axios response
-      const newItems = response.data;
+        // Extracts the data from the Axios response
+        const newItems = response.data;
 
-      // Update the state with the new data
-      setApiResponse((prevItems) => [
-        ...prevItems,
-        ...(newItems.animals || []), //   if newItems.animals is falsy then it will do this ...[]  and console.log(...[], 'empty'); gives you nothing
-      ]);
+        // Update the state with the new data
+        setApiResponse((prevItems) => [
+          ...prevItems,
+          ...(newItems.animals || []),
+        ]);
+        setLoading(false);
+      } else {
+        return;
+      }
     } catch (error) {
       console.error('Error fetching data:', error);
+      setLoading(false);
     } finally {
       setLoading(false);
     }
@@ -108,9 +136,11 @@ export default function Mainbody({
     const { scrollTop, clientHeight, scrollHeight } = document.documentElement;
 
     // Check if the user has scrolled to the bottom of the page
-    if (scrollTop + clientHeight >= scrollHeight - 20 && !loading) {
-      // Trigger fetching data when the user scrolls to the bottom
-      fetchData();
+    if (triggerNext) {
+      if (scrollTop + clientHeight >= scrollHeight - 20 && !loading) {
+        // Trigger fetching data when the user scrolls to the bottom
+        fetchData();
+      }
     }
   };
 
@@ -118,11 +148,10 @@ export default function Mainbody({
   useEffect(() => {
     window.addEventListener('scroll', handleScroll);
 
-    // Remove the event listener when the component unmounts
     return () => {
       window.removeEventListener('scroll', handleScroll);
     };
-  }, [handleScroll, loading]); // Include loading as a dependency to avoid potential issues
+  }, [handleScroll, loading]);
 
   // Step 1: Obtain OAuth 2.0 Token
   const getAccessToken = async () => {
@@ -154,13 +183,17 @@ export default function Mainbody({
       const currentAccessToken = await getAccessToken();
 
       if (!selectedState || !selectedPet) {
-        alert('Missing fields');
+        // alert('Missing fields');
+        setAlertOpen(true);
+        setTouched(false);
+        setCloseModal(false);
+        setTriggerNext(false);
         return;
       }
 
       // console.log(stateAbbreviations[selectedState], 'stateabb');
       // get a specific pet based on a specific location
-      // if a selectedGender is selected, we add the &gender to the url
+      // if a selectedGender is selected, added the &gender to the url
       const apiUrl = `https://api.petfinder.com/v2/animals?type=${selectedPet
         .toLowerCase()
         .slice(0, -1)}&location=${stateAbbreviations[selectedState]}${
@@ -178,12 +211,17 @@ export default function Mainbody({
       // console.log(response.data);
 
       setNextApiResponse(response.data);
-
-      // Replace existing animals with the new ones
+      setTouched(true);
+      setCloseModal(true);
+      setAlertOpen(false);
+      setTriggerNext(true);
+      // Replaces existing animals with the new ones
       setApiResponse(response.data.animals);
+      setLoading(false);
     } catch (error) {
       console.error('Error getting Animals list:', error);
-      // Handle the error here
+
+      setLoading(false);
     }
   };
 
@@ -233,22 +271,60 @@ export default function Mainbody({
   // depending on what the user chose, the handleSearch function will call different functions
   async function handleSearch() {
     let response = await getAnimalsList();
-    setTouched(true);
-    setCloseModal(true);
   }
+
+  // If isLoading is true, render a loading component
+  // if (loading) {
+  //   return (
+  //     <Box
+  //       sx={{
+  //         display: 'flex',
+  //         justifyContent: 'center',
+  //         alignItems: 'center',
+  //         height: '100vh',
+  //       }}
+  //     >
+  //       <CircularProgress color="primary" />
+  //     </Box>
+  //   );
+  // }
 
   return (
     <>
+      <Snackbar
+        open={alertOpen}
+        autoHideDuration={6000}
+        onClose={handleClose}
+        anchorOrigin={{ vertical: 'top', horizontal: 'center' }}
+      >
+        <MuiAlert
+          onClose={handleClose}
+          severity="error"
+          sx={{ width: '100%', textAlign: 'center' }}
+        >
+          <AlertTitle>Error</AlertTitle>
+          Please fill Out The Missing Fields
+        </MuiAlert>
+      </Snackbar>
       <div className="mediafilter">
         {' '}
         <span onClick={toggleModal}>
           {' '}
-          {closeModal ? 'Open Modal' : 'Close Filter'}{' '}
+          {triggerNext ? (closeModal ? 'Open Modal' : 'Close Filter') : ''}{' '}
         </span>
       </div>
 
       <div className={closeModal ? 'hide' : 'filterblockparent'}>
-        <div className={closeModal ? 'hide' : 'filterblock'}>
+        <div
+          className={
+            triggerNext
+              ? closeModal
+                ? 'hide'
+                : 'filterblock'
+              : 'nontriggerfilterblock'
+          }
+          onSubmit={handleSearch}
+        >
           <div className="findapetdiv">
             {' '}
             <h1> Find a Pet</h1>{' '}
@@ -264,20 +340,25 @@ export default function Mainbody({
               {/* <label htmlFor="petSelect" className="selectapetlabel">
                 Select a Pet:
               </label> */}
-              <select
+              <TextField
+                select
+                required
                 id="petSelect"
+                label="Select a Pet"
                 value={selectedPet}
                 onChange={handlePetChange}
+                size="small"
+                sx={{ width: '144px', marginTop: '10px' }}
               >
-                <option disabled value="">
+                <MenuItem disabled value="">
                   -- Select a Pet --
-                </option>
+                </MenuItem>
                 {petOptions.map((pet, index) => (
-                  <option key={index} value={pet}>
+                  <MenuItem key={index} value={pet}>
                     {pet}
-                  </option>
+                  </MenuItem>
                 ))}
-              </select>
+              </TextField>
             </div>
 
             <div>
@@ -287,18 +368,22 @@ export default function Mainbody({
                 <h2>Gender</h2>{' '}
               </div>
               <div className="genderselectdiv">
-                <select
+                <TextField
+                  select
+                  required
                   id="genderSelect"
+                  label="Select Gender"
                   value={selectedGender}
                   onChange={handleGenderChange}
+                  size="small"
+                  sx={{ width: '144px', marginTop: '10px' }}
                 >
-                  {/* <option value={gender}> Both </option> */}
                   {genderOptions.map((gender, index) => (
-                    <option key={index} value={gender}>
+                    <MenuItem key={index} value={gender}>
                       {gender}
-                    </option>
+                    </MenuItem>
                   ))}
-                </select>
+                </TextField>
               </div>
             </div>
           </div>
@@ -312,36 +397,48 @@ export default function Mainbody({
           </div>
           <div className="selectcontainer">
             <div className="selectastatediv">
-              <select
+              <TextField
+                select
+                required
                 id="stateSelect"
+                label="Select State"
                 value={selectedState}
                 onChange={handleStateChange}
+                size="small"
+                sx={{ width: '144px', marginTop: '10px' }}
               >
-                <option disabled value="">
-                  <h2 className="ops"> -- Select a State -- </h2>
-                </option>
+                <MenuItem disabled>
+                  <em className="ops">-- Select a State --</em>
+                </MenuItem>
                 {stateOptions.map((state, index) => (
-                  <option key={index} value={state}>
+                  <MenuItem key={index} value={state}>
                     {state}
-                  </option>
+                  </MenuItem>
                 ))}
-              </select>
+              </TextField>
             </div>
 
             <div className="searchdiv">
               {' '}
-              <button onClick={handleSearch}> Search </button>{' '}
+              <Button
+                variant="contained"
+                onClick={handleSearch}
+                color="secondary"
+              >
+                {' '}
+                Search{' '}
+              </Button>
             </div>
           </div>
         </div>
       </div>
 
+      {/*  main body */}
       {apiResponse ? (
         <div className="animalheadingdiv">
           {' '}
           {selectedPet == 'Dogs' ? <h1> Adoptable {selectedPet} 🐕 </h1> : ''}
           {selectedPet == 'Cats' ? <h1> Adoptable {selectedPet} 🐈 </h1> : ''}
-          {/* {selectedPet == 'Birds' ? <h1> Adoptable {selectedPet} 🕊️ </h1> : ''} */}
           {selectedPet == 'Rabbits' ? (
             <h1> Adoptable {selectedPet} 🐰 </h1>
           ) : (
@@ -354,47 +451,59 @@ export default function Mainbody({
       <div className={gridView ? 'gridcontainer' : 'hide'}>
         {apiResponse ? (
           <>
-            <div className="apidiv" style={{ width: closeModal ? '100%' : '' }}>
+            <div
+              className="apidiv"
+              style={{
+                width: closeModal ? '100%' : '',
+              }}
+            >
               <div className="apiresponsecontainer">
                 {apiResponse.map(
                   (element, index) =>
                     element.contact.address.state ==
                       stateAbbreviations[selectedState] &&
                     element.species == selectedPet.slice(0, -1) && (
-                      <div key={index} className="singleparentcontainer">
+                      <div
+                        key={element.index}
+                        className="singleparentcontainer"
+                      >
                         <div className="apiimagecontainer">
-                          <img
-                            className="apiresponseimage"
-                            onClick={() => {
-                              let theChosenElement = apiResponse.find(
-                                (elementtwo) => {
-                                  return elementtwo.id == element.id;
-                                }
-                              );
-                              setChosenElement(theChosenElement);
-                              // console.log(theChosenElement, 'chosen element'); // sets the element to the found object
-                              toggleImageModal();
-                              setLoading(false);
-                            }}
-                            loading="lazy"
-                            alt="an unknown cat"
-                            src={
-                              element.primary_photo_cropped
-                                ? element.primary_photo_cropped.small
-                                : catProfilePic
-                            }
-                          />
+                          {element.primary_photo_cropped?.small ? (
+                            <img
+                              className="apiresponseimage"
+                              onClick={() => {
+                                console.log(element);
+                                setChosenElement(element);
+                                toggleImageModal();
+                              }}
+                              loading="lazy"
+                              alt="an unknown cat"
+                              src={element.primary_photo_cropped.small}
+                            />
+                          ) : (
+                            <img
+                              className="apiresponseimage"
+                              onClick={() => {
+                                // console.log(element);
+                                setChosenElement(element);
+                                toggleImageModal();
+                              }}
+                              loading="lazy"
+                              alt="an unknown cat"
+                              src={noimg}
+                            />
+                          )}
                         </div>
-                        {imageModal ? (
+
+                        {/* {imageModal ? (
                           <Modal
                             imageModal={imageModal}
                             setImageModal={setImageModal}
                             chosenElement={chosenElement}
-                            loading={loading}
                           />
                         ) : (
                           ' '
-                        )}
+                        )} */}
 
                         <div className="info">
                           <div className="title">
@@ -459,12 +568,27 @@ export default function Mainbody({
                 )}
               </div>
             </div>
+
+            {chosenElement ? (
+              <Modal
+                imageModal={imageModal}
+                setImageModal={setImageModal}
+                chosenElement={chosenElement}
+                setChosenElement={setChosenElement}
+              />
+            ) : (
+              ' '
+            )}
           </>
         ) : (
           ''
         )}
 
-        <div className={closeModal ? 'hide' : 'filter'}>
+        <div
+          className={
+            closeModal ? 'hide' : triggerNext ? 'filter' : 'nontriggerfilter'
+          }
+        >
           <div className="findapetdiv">
             {' '}
             <h1> Find a Pet</h1>{' '}
@@ -477,23 +601,25 @@ export default function Mainbody({
             </div>
 
             <div className="selectapetdiv">
-              {/* <label htmlFor="petSelect" className="selectapetlabel">
-                Select a Pet:
-              </label> */}
-              <select
+              <TextField
+                select
+                required
                 id="petSelect"
+                label="Select a Pet"
                 value={selectedPet}
                 onChange={handlePetChange}
+                size="small"
+                sx={{ width: '144px', marginTop: '10px' }}
               >
-                <option disabled value="">
+                <MenuItem disabled value="">
                   -- Select a Pet --
-                </option>
+                </MenuItem>
                 {petOptions.map((pet, index) => (
-                  <option key={index} value={pet}>
+                  <MenuItem key={index} value={pet}>
                     {pet}
-                  </option>
+                  </MenuItem>
                 ))}
-              </select>
+              </TextField>
             </div>
 
             <div>
@@ -503,18 +629,21 @@ export default function Mainbody({
                 <h2>Gender</h2>{' '}
               </div>
               <div className="genderselectdiv">
-                <select
+                <TextField
+                  select
                   id="genderSelect"
+                  label="Select Gender"
                   value={selectedGender}
                   onChange={handleGenderChange}
+                  size="small"
+                  sx={{ width: '144px', marginTop: '10px' }}
                 >
-                  {/* <option value={gender}> Both </option> */}
                   {genderOptions.map((gender, index) => (
-                    <option key={index} value={gender}>
+                    <MenuItem key={index} value={gender}>
                       {gender}
-                    </option>
+                    </MenuItem>
                   ))}
-                </select>
+                </TextField>
               </div>
             </div>
           </div>
@@ -528,25 +657,37 @@ export default function Mainbody({
           </div>
           <div className="selectcontainer">
             <div className="selectastatediv">
-              <select
+              <TextField
+                select
                 id="stateSelect"
+                label="Select State"
                 value={selectedState}
                 onChange={handleStateChange}
+                size="small"
+                sx={{ width: '144px', marginTop: '10px' }}
               >
-                <option disabled value="">
-                  <h2 className="ops"> -- Select a State -- </h2>
-                </option>
+                <MenuItem disabled>
+                  <em className="ops">-- Select a State --</em>
+                </MenuItem>
                 {stateOptions.map((state, index) => (
-                  <option key={index} value={state}>
+                  <MenuItem key={index} value={state}>
                     {state}
-                  </option>
+                  </MenuItem>
                 ))}
-              </select>
+              </TextField>
             </div>
 
             <div className="searchdiv">
               {' '}
-              <button onClick={handleSearch}> Search </button>{' '}
+              {/* <button onClick={handleSearch}> Search </button>{' '} */}
+              <Button
+                variant="contained"
+                onClick={handleSearch}
+                color="secondary"
+              >
+                {' '}
+                Search{' '}
+              </Button>
             </div>
           </div>
         </div>
@@ -661,3 +802,4 @@ export default function Mainbody({
     </>
   );
 }
+export default memo(Mainbody);

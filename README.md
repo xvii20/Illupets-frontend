@@ -1,4 +1,4 @@
-# Petsy App
+# Illupets App
 
 # How To Use
 
@@ -12,7 +12,7 @@ type **npm install** to install the required the dependencies
 
 # Geocoding api
 
-the api that I used for geocoding is from https://positionstack.com/. just click "Get Free Api Key" and you can follow the instructions to get a free api key from there. replace the geo_Api_Key variable in the modalmap.jsx file with your own api key.
+the api that I used for forward geocoding is from https://docs.mapbox.com/api/overview/.
 
 # Petfinder Api
 
@@ -23,10 +23,10 @@ and then replace the ${clientId} variable in the mainbody.jsx file with the apiK
 
 # Helpful Links
 
-- [Positionstack Documentation](https://positionstack.com/documentation)
+- [Mapbox Documentation](https://docs.mapbox.com/api/search/geocoding/)
 - [Petfinder Developers](https://www.petfinder.com/developers/)
 - [Petfinder Developers v2 Docs](https://www.petfinder.com/developers/v2/docs/)
 
 # Tech Stack
 
-React
+PostgreSQL, Express, Reactjs, Nodejs, Prisma, and Firebase for Authentication

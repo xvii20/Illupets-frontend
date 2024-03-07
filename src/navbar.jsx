@@ -149,6 +149,7 @@ export default function Navbar({
           >
             <Button
               color="inherit"
+              sx={{ top: '2px' }}
               id="account-button"
               onClick={handleClick}
               aria-controls={open ? 'account-menu' : undefined}

@@ -9,7 +9,7 @@ const Imagemodal = ({
   setImageModalIsOpen,
   miniImageloading,
 }) => {
-  // console.log(selectedImage);
+  // console.log(selectedImage)
 
   if (!imageModalisOpen) return null;
 

@@ -9,6 +9,7 @@ import {
 } from 'react-leaflet';
 import axios from 'axios';
 import { Stack } from '@mui/material';
+import markerIcon from './marker-icon.png';
 
 const Modalmap = ({
   chosenElement,
@@ -91,6 +92,12 @@ const Modalmap = ({
     };
   }, []);
 
+  const customIcon = L.icon({
+    iconUrl: markerIcon, // URL of the custom marker image
+    iconSize: [25, 41], // icon size
+    iconAnchor: [12, 41], // centers the marker of the react leaflet
+  });
+
   return (
     <>
       {longitude && latitude ? (
@@ -111,7 +118,7 @@ const Modalmap = ({
               attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
-            <Marker position={[latitude, longitude]}>
+            <Marker position={[latitude, longitude]} icon={customIcon}>
               {/* <Marker position={[40.7128, 74.006]}> */}{' '}
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.

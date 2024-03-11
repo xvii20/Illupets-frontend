@@ -48,7 +48,7 @@ export default function Forgotpassword() {
       setOpenEmailHasBeenSentModal(true);
       // console.log(response, 'response ');
     } catch (error) {
-      console.log(error);
+      // console.log(error);
     }
   }
 

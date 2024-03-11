@@ -47,6 +47,6 @@ export const logOut = () => {
       // console.log('loggedout');
     })
     .catch((error) => {
-      console.log('error');
+      // console.log('error');
     });
 };

@@ -472,7 +472,7 @@ function Mainbody({ closeModal, setCloseModal, gridView, mapView }) {
                             <img
                               className="apiresponseimage"
                               onClick={() => {
-                                console.log(element);
+                                // console.log(element);
                                 setChosenElement(element);
                                 toggleImageModal();
                               }}

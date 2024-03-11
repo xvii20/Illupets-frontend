@@ -343,7 +343,7 @@ body {
   background-color: #fdfdfd;
   display: flex;
   justify-content: center;
-  outline: 2px solid pink;
+  /* outline: 2px solid pink; */
 }
 
 .loginheader {

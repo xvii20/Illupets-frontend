@@ -56,7 +56,7 @@ export default function Register({
   const register = async (e) => {
     e.preventDefault();
 
-    console.log(emailValue, 'emailvalue');
+    // console.log(emailValue, 'emailvalue');
     if (emailValue == '' || passwordValue == '') {
       setSubmitButtonClicked(true);
       setMissingFieldsAlert(true);
@@ -96,7 +96,7 @@ export default function Register({
         }
       );
     } catch (error) {
-      console.log(error.message);
+      // console.log(error.message);
       if (
         error.message ==
         'Firebase: Password should be at least 6 characters (auth/weak-password).'

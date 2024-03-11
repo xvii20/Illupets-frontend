@@ -251,7 +251,7 @@ export default function Navbar({
                   onClick={function () {
                     logOut();
                     setAlertLoggedOutOpen(true);
-                    console.log('logged out successful');
+                    // console.log('logged out successful');
                     setUserEmail('');
                     handleClose();
                     // setCloseModal(false);

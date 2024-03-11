@@ -190,7 +190,7 @@ export default function Login({
       setCloseModal(false);
     } catch (error) {
       // console.error('Error signing in:', error);
-      console.log(error.message);
+      // console.log(error.message);
       if (error.message == 'Firebase: Error (auth/invalid-credential).') {
         setErrorMessage('Wrong Password or Email');
         setErrorAlertOpen(true);

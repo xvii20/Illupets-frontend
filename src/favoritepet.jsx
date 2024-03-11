@@ -24,6 +24,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import ArrowBackIosIcon from '@mui/icons-material/ArrowBackIos';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import noimage from './No-Image-Placeholder.png';
+import markerIcon from './marker-icon.png';
 
 export default function Favoritepet() {
   const location = useLocation();
@@ -87,6 +88,12 @@ export default function Favoritepet() {
       window.removeEventListener('keydown', handleKeyDown);
     };
   }, [selectedIndex, petObj.images]);
+
+  const customIcon = L.icon({
+    iconUrl: markerIcon, // URL of the custom marker image
+    iconSize: [25, 41], // icon size
+    iconAnchor: [12, 41], // centers the marker of the react leaflet
+  });
 
   const displayStyle = imageModalIsOpen ? 'block' : 'none';
   const backgroundfaded = imageModalIsOpen ? 'rgba(0, 0, 0, 0.5)' : '';
@@ -441,7 +448,10 @@ export default function Favoritepet() {
                 url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
               />
 
-              <Marker position={[petObj.latitude, petObj.longitude]}>
+              <Marker
+                position={[petObj.latitude, petObj.longitude]}
+                icon={customIcon}
+              >
                 {' '}
                 <Popup>
                   A pretty CSS3 popup. <br /> Easily customizable.
@@ -559,7 +569,10 @@ export default function Favoritepet() {
               url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
             />
 
-            <Marker position={[petObj.latitude, petObj.longitude]}>
+            <Marker
+              position={[petObj.latitude, petObj.longitude]}
+              icon={customIcon}
+            >
               {' '}
               <Popup>
                 A pretty CSS3 popup. <br /> Easily customizable.

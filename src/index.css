@@ -840,7 +840,7 @@ option:disabled {
 }
 
 .nontriggerfilterblock {
-  width: /* 40%; */ 60%;
+  width: /* 40%; */ 80%;
 
   outline: '2px solid black;';
   height: fit-content;
@@ -1318,6 +1318,7 @@ option:disabled {
 @media (max-width: 537px) {
   .nontriggerfilterblock {
     display: block;
+    /* width: 85vw; */
   }
 
   .hamburger-menu {

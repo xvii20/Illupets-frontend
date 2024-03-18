@@ -70,7 +70,7 @@ export default function Register({
 
     try {
       setSubmitButtonClicked(false);
-      setAlertRegistrationSuccessful(true);
+
       const sanitizedEmailValue = DOMPurify.sanitize(emailValue);
       const sanitizedPasswordValue = DOMPurify.sanitize(passwordValue);
 
@@ -95,6 +95,7 @@ export default function Register({
           uid: userid,
         }
       );
+      setAlertRegistrationSuccessful(true);
     } catch (error) {
       // console.log(error.message);
       if (
@@ -103,14 +104,17 @@ export default function Register({
       ) {
         setErrorMessage('Password should be atleast 6 characters');
         setAlertOpen(true);
+        return;
       } else if (
         error.message == 'Firebase: Error (auth/email-already-in-use).'
       ) {
         setErrorMessage('Email already exists please choose another one');
         setAlertOpen(true);
+        return;
       } else if ((error.message = 'Firebase: Error (auth/invalid-email).')) {
         setErrorMessage('The email is not a valid email address');
         setAlertOpen(true);
+        return;
       }
     }
   };
